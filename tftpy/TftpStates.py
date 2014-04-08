@@ -49,7 +49,7 @@ class TftpState(object):
     def returnSupportedOptions(self, options):
         """This method takes a requested options list from a client, and
         returns the ones that are supported."""
-        # We support the options blksize and tsize right now.
+        # We support the options blksize
         # FIXME - put this somewhere else?
         accepted_options = {}
         for option in options:
@@ -65,9 +65,6 @@ class TftpState(object):
                     accepted_options[option] = MIN_BLKSIZE
                 else:
                     accepted_options[option] = options[option]
-            elif option == 'tsize':
-                log.debug("tsize option is set")
-                accepted_options['tsize'] = 1
             else:
                 log.info("Dropping unsupported option '%s'" % option)
         log.debug("Returning these accepted options: %s", accepted_options)
